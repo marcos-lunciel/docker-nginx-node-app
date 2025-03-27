@@ -19,8 +19,8 @@ services:
       - node-network
     volumes:
       - ./node:/home/node/app
-    command: node index.js
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+      - /home/node/app/node_modules
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s node index.js
     tty: true
     container_name: app
     depends_on:
